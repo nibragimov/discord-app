@@ -29,6 +29,9 @@ export async function DiscordRequest(endpoint, options) {
     },
     ...options
   });
+  console.log(url)
+  console.log(options.body)
+  // console.log(Authorization)
   // throw API errors
   if (!res.ok) {
     const data = await res.json();
@@ -59,4 +62,8 @@ export function getRandomEmoji() {
 
 export function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export function buildMessageIdEndpoint(token, messageId) {
+  return `webhooks/${process.env.APP_ID}/${token}/messages/${messageId}`;
 }
